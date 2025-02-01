@@ -2,8 +2,13 @@ import csv
 from tinydb import TinyDB, Query
 
 def read_csv(file_path):
-    # Read and parse the CSV file
-    pass
+    data = []
+    try:
+        with open(file_path, 'r') as file:
+            return list(csv.DictReader(file))
+    except FileNotFoundError:
+        raise ValueError(f"File {file_path} not found.")
+    
 
 def insert_into_db(data, db_path):
     # Insert data into TinyDB
