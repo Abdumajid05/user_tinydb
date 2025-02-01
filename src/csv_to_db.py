@@ -11,9 +11,11 @@ def read_csv(file_path):
     
 
 def insert_into_db(data, db_path):
-    # Insert data into TinyDB
-    pass
-
+    if not data:
+        raise ValueError('Data must not be empty')
+    
+    db = TinyDB(db_path)
+    db.insert_multiple(data)
 def query_db(db_path, query_field, query_value):
     # Query the database
     pass
