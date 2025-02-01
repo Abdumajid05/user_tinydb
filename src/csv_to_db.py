@@ -17,8 +17,16 @@ def insert_into_db(data, db_path):
     db = TinyDB(db_path)
     db.insert_multiple(data)
 def query_db(db_path, query_field, query_value):
-    # Query the database
-    pass
+    db = TinyDB(db_path)
+    User = Query()
+    
+    if query_field and query_value:
+        results = db.search(User[query_field] == query_value)
+    else:
+        results = db.all()
+    
+    print(f"Found {len(results)} matching records.")
+    return results
 
 if __name__ == "__main__":
     # Main execution logic
